@@ -51,6 +51,17 @@ namespace Rostok
                 .Select(gr => new { Kategória = gr.Key, db = gr.Count() })
                 .ToList()
                 .ForEach(x => Console.WriteLine($"\t {x.Kategória} - {x.db}"));
+            
+            //9.
+            Console.WriteLine($"9. feladat: Rostok100g.txt");
+            string filename = "Rostok100g.txt";
+            List<string> sorok = new List<string>();
+            sorok.Add("Megnevezés;Kategória;Rost");
+            rostok
+                .Where(x => x.Egység == "100g")
+                .ToList()
+                .ForEach(x => sorok.Add($"{x.Név};{x.Kategória};{x.rost}"));
+            File.WriteAllLines(filename, sorok);
 
 
             Console.ReadKey();
