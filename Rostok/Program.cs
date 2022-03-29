@@ -24,8 +24,25 @@ namespace Rostok
             //5.
             double átlag = rostok
                 .Where(x => x.Kategória == "Friss gyümölcsök" && x.Egység == "100g")
-                .Average(x => x.RostInGr);
+                .Average(x => x.rost);
             Console.WriteLine($"5. feladat: Friss gyümölcsök átlagos rosttartalma: {átlag:0.0000}g");
+            
+            //6
+            string s = "";
+            do
+            {
+                Console.Write($"6. feladat: Kérek egy karakterláncot: ");
+                s = Console.ReadLine();
+            } while (s.Length < 2);
+           
+            List<Rost> szűrt = rostok.Where(x => x.Név.ToLower().Contains(s.ToLower())).ToList();
+            if (szűrt.Count == 0)
+                Console.WriteLine($"6. feldat: A keresés eredménytelen!");
+            else
+                szűrt.ForEach(x => Console.WriteLine($"\t{x.Név} @ {x.Kategória} @ {x.Egység} @ {x.rost}"));
+
+            //7
+            Console.WriteLine($"7. feladat: Kategóriák száma: {rostok.GroupBy(x => x.Kategória).Select(gr => gr.First()).Count()}");
 
             
 
