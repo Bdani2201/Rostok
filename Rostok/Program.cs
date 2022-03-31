@@ -42,7 +42,7 @@ namespace Rostok
                 szűrt.ForEach(x => Console.WriteLine($"\t{x.Név} @ {x.Kategória} @ {x.Egység} @ {x.rost}"));
 
             //7
-            Console.WriteLine($"7. feladat: Kategóriák száma: {rostok.GroupBy(x => x.Kategória).Select(gr => gr.First()).Count()}");
+            Console.WriteLine($"7. feladat: Kategóriák száma: {rostok.Select(x => x.Kategória).Distinct().Count()}");
             
             //8.
             Console.WriteLine($"8. feladat: Statisztika");
@@ -62,7 +62,6 @@ namespace Rostok
                 .ToList()
                 .ForEach(x => sorok.Add($"{x.Név};{x.Kategória};{x.rost}"));
             File.WriteAllLines(filename, sorok);
-
 
             Console.ReadKey();
         }
